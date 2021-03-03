@@ -7,7 +7,7 @@ import ru.netology.domain.Movie;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AfishaManagerTest {
-    private final AfishaManager AfishaManager = new AfishaManager();
+    private AfishaManager AfishaManager = new AfishaManager();
     Movie one = new Movie (1,"img1.jpg","Name1","Comedy",false);
     Movie two = new Movie (2,"img2.jpg","Name2","Historical",false);
     Movie three = new Movie (3,"img3.jpg","Name3","Comedy",false);
@@ -31,26 +31,38 @@ public class AfishaManagerTest {
         AfishaManager.add(seven);
         AfishaManager.add(eight);
         AfishaManager.add(nine);
+        AfishaManager.add(ten);
     }
 
     @Test
     public void shouldShowsIfNoMovies(){
-        AfishaManager manager = new AfishaManager();
-        Movie[] actual = manager.getAll();
+        AfishaManager AfishaManager = new AfishaManager();
+        Movie[] actual = AfishaManager.getAll();
         Movie[] expected = new Movie[]{};
         assertArrayEquals(expected,actual);
     }
 
     @Test
-    public void shouldShowsIfLessTen(){
+    public void shouldShowsIfOneMovies(){
+        AfishaManager AfishaManager = new AfishaManager();
+        AfishaManager.add(one);
         Movie[] actual = AfishaManager.getAll();
-        Movie[] expected = new Movie[] {nine,eight,seven,six,five,four,three,two,one};
+        Movie[] expected = new Movie[]{one};
+        assertArrayEquals(expected,actual);
+    }
+
+    @Test
+    public void shouldShowsIfMoreOneLessTen(){
+        AfishaManager AfishaManager = new AfishaManager();
+        AfishaManager.add(one);
+        AfishaManager.add(two);
+        Movie[] actual = AfishaManager.getAll();
+        Movie[] expected = new Movie[] {two,one};
         assertArrayEquals(expected,actual);
     }
 
     @Test
     public void shouldShowsIfTen(){
-        AfishaManager.add(ten);
         Movie[] actual = AfishaManager.getAll();
         Movie[] expected = new Movie[] {ten,nine,eight,seven,six,five,four,three,two,one};
         assertArrayEquals(expected,actual);
@@ -58,7 +70,6 @@ public class AfishaManagerTest {
 
     @Test
     public void shouldShowsIfMoreTen(){
-        AfishaManager.add(ten);
         AfishaManager.add(eleven);
         Movie[] actual = AfishaManager.getAll();
         Movie[] expected = new Movie[] {eleven,ten,nine,eight,seven,six,five,four,three,two};

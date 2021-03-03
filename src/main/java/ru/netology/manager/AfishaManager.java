@@ -4,6 +4,9 @@ import ru.netology.domain.Movie;
 public class AfishaManager {
     private Movie[] movies = new Movie[0];
 
+    public AfishaManager() {
+    }
+
     public void add(Movie movie){
         int length = movies.length + 1;
         Movie[] tmp = new Movie[length];
